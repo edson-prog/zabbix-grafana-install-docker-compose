@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  grafana:
+    image: grafana/grafana-oss:latest
+    ports:
+      - '3000:3000'
+    environment:
+      - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app
+    depends_on:
+      - mysql
+      - zabbix-server
+    networks:
+      - network-zabbix
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    networks:
+      - network-zabbix
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql:latest
+    environment:
+      DB_SERVER_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+    depends_on:
+      - mysql
+    networks:
+      - network-zabbix
+
+  zabbix-agent:
+    container_name: zabbix-agent
+    image: zabbix/zabbix-agent2:latest
+    user: root
+    networks:
+      - network-zabbix
+    links:
+      - zabbix-server
+    restart: always
+    privileged: true
+    volumes:
+      - /var/run:/var/run
+    ports:
+      - '10050:10050'
+    environment:
+      - ZBX_HOSTNAME=Zabbix server
+      - ZBX_SERVER_HOST=172.18.0.1
+
+networks:
+  network-zabbix:
+    driver: bridge
