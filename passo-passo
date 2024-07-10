@@ -1,0 +1,65 @@
+1. Instale o Docker e Docker Compose
+Baixe e instale o Docker do site oficial (docker.com).
+
+Verifique a instalação:
+
+Abra um terminal e execute docker --version.
+Instale o Docker Compose do site oficial (docker.com).
+
+Verifique a instalação:
+
+Execute docker-compose --version.
+2. Configure o Projeto Localmente
+Crie um diretório para o projeto e navegue até ele.
+Crie o arquivo docker-compose.yml no diretório do projeto com as configurações dos serviços Docker.
+3. Inicialize o Repositório Git Local
+Inicialize o repositório Git:
+No terminal, navegue até a pasta do projeto e execute git init.
+Adicione o arquivo docker-compose.yml:
+Execute git add docker-compose.yml.
+Faça o primeiro commit:
+Execute git commit -m "Primeiro commit".
+4. Crie um Repositório no GitHub
+No GitHub, crie um novo repositório.
+Copie a URL do repositório.
+5. Conecte o Repositório Local ao GitHub
+Adicione o repositório remoto:
+Execute git remote add origin <URL do repositório>.
+Envie os commits para o GitHub:
+Execute git push -u origin master.
+6. Execute o Projeto
+Execute o Docker Compose:
+No terminal, execute docker-compose up -d.
+Resumo dos Comandos
+Instalar e verificar Docker:
+
+bash
+Copiar código
+docker --version
+docker-compose --version
+Inicializar o projeto:
+
+bash
+Copiar código
+mkdir meu-projeto-grafana
+cd meu-projeto-grafana
+nano docker-compose.yml
+Inicializar o repositório Git:
+
+bash
+Copiar código
+git init
+git add docker-compose.yml
+git commit -m "Primeiro commit"
+Adicionar repositório remoto e enviar commits:
+
+bash
+Copiar código
+git remote add origin <URL do repositório>
+git push -u origin master
+Executar o Docker Compose:
+
+bash
+Copiar código
+docker-compose up -d
+
